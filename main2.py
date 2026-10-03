@@ -1,3 +1,4 @@
+
 """
 frontend/streamlit_app.py
 
@@ -16,7 +17,9 @@ This file contains UI code only. All real work happens in:
 
 import os
 import sys
+import traceback
 from datetime import datetime
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import streamlit as st
@@ -74,6 +77,7 @@ def build_report(filename: str, doc: dict) -> str:
         lines.append("_No reviewer decisions recorded yet._")
     return "\n".join(lines)
 
+
 with st.sidebar:
     st.title("⚖️ Tata Legal AI")
     st.caption("Contract summaries and risk flags, with human approval")
@@ -90,18 +94,29 @@ with st.sidebar:
                     result["review_status"] = STATUS_PENDING
                     st.session_state.documents[f.name] = result
                     st.session_state.chat_history.setdefault(f.name, [])
+
                     if result["blocked"]:
                         status.update(label=f"{f.name}: completed with a warning", state="error")
                     else:
                         status.update(label=f"{f.name}: done", state="complete")
+
                 except Exception as e:
+                    error_details = traceback.format_exc()
+
                     status.update(label=f"{f.name}: failed", state="error")
-                    st.error(f"Could not analyze {f.name}: {e}")
+
+                    st.error(
+                        f"Could not analyze {f.name}: "
+                        f"{type(e).__name__}: {e}"
+                    )
+                    st.code(error_details, language="text")
+                    print(f"\n[DOCUMENT ANALYSIS ERROR: {f.name}]\n{error_details}")
 
     selected = None
     if st.session_state.documents:
         st.divider()
         selected = st.selectbox("Active document", list(st.session_state.documents.keys()))
+
 
 if not selected:
     st.header("Contract review workspace")
@@ -151,6 +166,7 @@ with tab_qa:
 
     if question := st.chat_input("e.g. What is the termination notice period?"):
         history.append({"role": "user", "content": question})
+
         with st.chat_message("user"):
             st.markdown(question)
 
@@ -158,8 +174,17 @@ with tab_qa:
             with st.spinner("Running security checks and searching the document..."):
                 try:
                     res = answer_question(document_id=selected, question=question)
+
                 except Exception as e:
-                    res = {"blocked": True, "block_reason": f"Error: {e}", "answer": "", "sources": []}
+                    error_details = traceback.format_exc()
+                    print(f"\n[QUESTION ANSWER ERROR]\n{error_details}")
+
+                    res = {
+                        "blocked": True,
+                        "block_reason": f"{type(e).__name__}: {e}",
+                        "answer": "",
+                        "sources": [],
+                    }
 
             if res["blocked"]:
                 reply = f"🛑 {res['block_reason']}"
@@ -170,6 +195,7 @@ with tab_qa:
                 with st.expander("Source passages used"):
                     for i, s in enumerate(res["sources"], 1):
                         st.markdown(f"**{i}.** {s['text']}")
+
         history.append({"role": "assistant", "content": reply})
 
 with tab_review:
@@ -179,6 +205,7 @@ with tab_review:
 
     b1, b2, b3 = st.columns(3)
     decision = None
+
     if b1.button("✅ Accept", width="stretch"):
         decision = "Accepted"
     if b2.button("⬆️ Escalate to senior reviewer", width="stretch"):
@@ -204,6 +231,7 @@ with tab_review:
 
     st.subheader("Audit trail")
     entries = [e for e in st.session_state.audit_log if e["document"] == selected]
+
     if entries:
         st.dataframe(entries, width="stretch", hide_index=True)
     else:
