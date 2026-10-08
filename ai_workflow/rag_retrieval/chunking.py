@@ -1,28 +1,52 @@
-"""
-ai_workflow/rag_retrieval/chunking.py
-
-Splits a long document's text into smaller overlapping pieces before
-embedding. Embedding an entire contract as one vector loses precision —
-a question about "termination" should match the termination paragraph
-specifically, not get diluted by every other paragraph in the contract.
-"""
-
-
-def chunk_text(text: str, chunk_size: int = 1000, overlap: int = 200) -> list[str]:
+def chunk_text(
+    pages: list[dict],
+    chunk_size: int = 1000,
+    overlap: int = 200
+) -> list[dict]:
     """
-    Simple character-based chunker with overlap. overlap exists so a
-    clause that happens to span a chunk boundary isn't cut in a way that
-    loses meaning — the tail of one chunk repeats as the head of the next.
+    Splits page-wise text into overlapping chunks.
+
+    Input:
+        [
+            {"page_number": 1, "text": "..."},
+            {"page_number": 2, "text": "..."}
+        ]
+
+    Output:
+        [
+            {
+                "text": "...",
+                "page_number": 1
+            },
+            {
+                "text": "...",
+                "page_number": 2
+            }
+        ]
     """
-    text = text.strip()
-    if not text:
-        return []
 
     chunks = []
-    start = 0
-    while start < len(text):
-        end = start + chunk_size
-        chunks.append(text[start:end])
-        start += chunk_size - overlap
+
+    for page in pages:
+        text = page.get("text", "").strip()
+        page_number = page.get("page_number")
+
+        if not text:
+            continue
+
+        start = 0
+
+        while start < len(text):
+            end = start + chunk_size
+
+            chunk = text[start:end].strip()
+
+            if chunk:
+                chunks.append({
+                    "text": chunk,
+                    "page_number": page_number
+                })
+
+            start += chunk_size - overlap
 
     return chunks
