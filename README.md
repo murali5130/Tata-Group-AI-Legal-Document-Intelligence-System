@@ -4,6 +4,7 @@
 An AI-powered system that reads legal contracts (MOA/AOA, vendor agreements), matches them against an approved clause library, and flags risks with page-level citations.
 
 **Live Demo:** https://tata-group-legal-ai.streamlit.app/
+
 **Demo Video:** https://drive.google.com/file/d/1YV6oscsqT1TOLkb-rQ1Wo33hHohwcZ5o/view?usp=sharing
 
 ## Problem Statement
