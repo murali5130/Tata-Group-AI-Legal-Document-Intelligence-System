@@ -71,11 +71,6 @@ streamlit run main2.py
 [📄 Click here to view the final output](MOA_AOA_4_Important_Pages.pdf_review_record.md)
 
 
-## My Contribution
-<!-- 2-3 lines about what YOU built, e.g. clause library, OCR pipeline, prompts -->
-
-## Team
-Murali Krishna ([LinkedIn](your-link)) and teammate
-
+Murali Krishna ([LinkedIn](your-link))
 ## License
 MIT
