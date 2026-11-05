@@ -7,6 +7,8 @@ An AI-powered system that reads legal contracts (MOA/AOA, vendor agreements), ma
 
 **Demo Video:** https://drive.google.com/file/d/1YV6oscsqT1TOLkb-rQ1Wo33hHohwcZ5o/view?usp=sharing
 
+**Sample Legal Document:** https://drive.google.com/file/d/1RV7TpoDgQQZ_tLYjxuEvtKqvkyzuwUdC/view?usp=sharing
+
 ## Problem Statement
 Legal teams spend hours manually reviewing contracts to check whether clauses such as indemnity, liability caps, termination and data protection follow company policy. This project automates the first-pass review: it extracts clauses, compares them with an approved knowledge base, and highlights risks.
 
