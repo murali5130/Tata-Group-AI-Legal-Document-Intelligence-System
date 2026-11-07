@@ -91,6 +91,6 @@ The following diagram illustrates the Retrieval-Augmented Generation (RAG) workf
 [📄 Click here to view the final output](MOA_AOA_4_Important_Pages.pdf_review_record.md)
 
 
-Murali Krishna ([LinkedIn](your-link))
+Murali Krishna ([LinkedIn](https://www.linkedin.com/in/murali-krishna-372875255/?isSelfProfile=true))
 ## License
 MIT
