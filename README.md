@@ -60,9 +60,22 @@ uv sync
 # add GROQ_API_KEY and database URL in a .env file
 streamlit run main2.py
 ```
-## This is how our system works internally when user ask question
-<img width="1080" height="602" alt="image" src="https://github.com/user-attachments/assets/4499a37e-fe4b-4ba3-9a11-cb94201ec4c8" />
 
+## 🏗️ RAG Architecture
+
+The following diagram illustrates the Retrieval-Augmented Generation (RAG) workflow used in the system.
+
+![RAG Architecture](images/rag-architecture.jpg)
+
+### Workflow
+
+1. **Document Loading:** Upload legal PDF documents.
+2. **Text Splitting:** Extract and divide documents into smaller text chunks.
+3. **Embedding Generation:** Convert text chunks into vector embeddings.
+4. **Vector Storage:** Store embeddings in the vector database.
+5. **Query Processing:** Convert user queries into embeddings.
+6. **Similarity Search:** Retrieve the most relevant document chunks.
+7. **Response Generation:** Pass retrieved context to the LLM to generate relevant answers.
 
 ## Screenshots
 <!-- Add 2-3 screenshots of the app in an images/ folder -->
