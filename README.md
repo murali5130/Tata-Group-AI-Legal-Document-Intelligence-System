@@ -81,9 +81,11 @@ The following diagram illustrates the Retrieval-Augmented Generation (RAG) workf
 
 ## Screenshots
 <!-- Add 2-3 screenshots of the app in an images/ folder -->
-![Upload screen] <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b24b8106-e116-4510-a3ce-b8629e843c79" />
+### Upload screen 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b24b8106-e116-4510-a3ce-b8629e843c79" />
 
-![Risk analysis output] <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/08a56002-469d-4534-acd1-b839ac4fedca" />
+### Risk analysis output 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/08a56002-469d-4534-acd1-b839ac4fedca" />
 
 ## Final Output on Provided Document
 [📄 Click here to view the final output](MOA_AOA_4_Important_Pages.pdf_review_record.md)
