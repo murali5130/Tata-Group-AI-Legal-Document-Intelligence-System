@@ -60,6 +60,9 @@ uv sync
 # add GROQ_API_KEY and database URL in a .env file
 streamlit run main2.py
 ```
+## This is how our system works internally when use asked a question
+<img width="1080" height="602" alt="image" src="https://github.com/user-attachments/assets/4499a37e-fe4b-4ba3-9a11-cb94201ec4c8" />
+
 
 ## Screenshots
 <!-- Add 2-3 screenshots of the app in an images/ folder -->
