@@ -65,7 +65,7 @@ streamlit run main2.py
 
 The following diagram illustrates the Retrieval-Augmented Generation (RAG) workflow used in the system.
 
-![RAG Architecture]<img width="1080" height="602" alt="image" src="https://github.com/user-attachments/assets/65482b20-0f76-43c8-a09d-a2e0b5a11bf6" />
+![RAG Architecture] <img width="1080" height="602" alt="image" src="https://github.com/user-attachments/assets/65482b20-0f76-43c8-a09d-a2e0b5a11bf6" />
 
 
 ### Workflow
